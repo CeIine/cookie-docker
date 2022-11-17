@@ -10,19 +10,66 @@ services:
     ports:
       - 5432:5432
     volumes: 
-      - ./data:/var/lib/postgresql/data
+      - ./data-psql:/var/lib/postgresql/data
     networks:
-      net: {}
+      - psql
+      - common
+    restart: unless-stopped
 
-  admirer:
+  adminer:
     container_name: adminer
-    image: adminer
+    image: adminer:latest
+    depends_on:
+      postgres:
+        condition: service_started
     ports:
       - 8080:8080
-    depends_on:
-      - postgres
     networks:
-      net: {}
+      - psql
+    restart: unless-stopped
+
+
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    networks:
+      - mongo
+      - common
+    restart: unless-stopped
+    volumes:
+      - ./data-mongo:/data/db
+      - ./config-mongo:/data/configdb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+
+  mongo-express:
+    image: mongo-express
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_started
+    networks:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: mongo
+      ME_CONFIG_MONGODB_ADMINPASSWORD: mongo
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:mongo@mongo:27017/
+
+  apache:
+    container_name: apache
+    image: httpd:latest
+    restart: unless-stopped
+    networks:
+      - common
+    ports:
+      - 8888:80
+    volumes:
+      - ./website:/usr/local/apache2/htdocs
 
 networks:
-  net: {}
+  mongo: {}
+  psql: {}
+  common: {}
