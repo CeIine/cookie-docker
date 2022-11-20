@@ -28,50 +28,34 @@ services:
       - psql
     restart: unless-stopped
 
-  mongo:
-    container_name: mongo
-    image: mongo:latest
+  redis:
+    container_name: redis
+    image: redis:latest
     networks:
-      - mongo
+      - redis
       - common
+    ports:
+      - 6379:6379
     restart: unless-stopped
     volumes:
-      - data-mongo:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo
-      MONGO_INITDB_ROOT_PASSWORD: mongo
+      - data-redis:/data
 
-  mongo-express:
-    image: mongo-express
-    restart: unless-stopped
-    depends_on:
-      mongo:
-        condition: service_started
-    networks:
-      - mongo
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: mongo
-      ME_CONFIG_MONGODB_ADMINPASSWORD: mongo
-      ME_CONFIG_MONGODB_URL: mongodb://mongo:mongo@mongo:27017/
-
-  apache:
-    container_name: apache
-    image: httpd:latest
+  web:
+    container_name: php-web
+    image: php:7.2.2-apache
     restart: unless-stopped
     networks:
       - common
     ports:
       - 8888:80
     volumes:
-      - ./website:/usr/local/apache2/htdocs
+      - ./website:/var/www/html/
 
 volumes: 
     data-psql:
-    data-mongo:
+    data-redis:
 
 networks:
-  mongo: {}
+  redis: {}
   psql: {}
   common: {}

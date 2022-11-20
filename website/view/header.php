@@ -7,4 +7,4 @@
     <link rel="stylesheet" href="view/css/main.min.css">
 </head>
 <body>
-    <main class="main"></main>
+    <main class="main">
