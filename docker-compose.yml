@@ -42,7 +42,7 @@ services:
 
   web:
     container_name: php-web
-    image: php:7.2.2-apache
+    image: custom-php-apache
     restart: unless-stopped
     networks:
       - common
