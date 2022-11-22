@@ -42,7 +42,7 @@ services:
 
   web:
     container_name: php-web
-    image: custom-php-apache
+    build: docker-website/
     restart: unless-stopped
     networks:
       - common
