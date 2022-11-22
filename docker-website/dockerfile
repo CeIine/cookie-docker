@@ -1,5 +1,5 @@
 FROM php:7.2.2-apache
-RUN apt-get update && apt-get install -y vim git make
+RUN apt-get update && apt-get upgrade -y && apt-get install -y vim git make libpq-dev
 ADD "php.ini-production" "$PHP_INI_DIR/php.ini"
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions
