@@ -6,6 +6,7 @@
             <input type="hidden" name="action" value="true">
             <div class="form-group"><input class="form-control" type="login" name="login" placeholder="Login"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <?php if(isset($error)){ echo '<p style="color: red">'.$error.'</p>'; } ?>
             <div class="form-group text-center"><button class="btn btn-primary btn-block" type="submit">Connexion</button></div><br>
             <a href="../../view/pages/register.php" class="already">You don't have an account? Sign Up here.</a>
         </form>

@@ -58,8 +58,11 @@ use LDAP\Result;
                 $result = $this->co->query($requete)->fetchColumn();
 
                 if($result == 0){
-                    echo "Vous vous êtes pas encore inscrit.";
-                    header('refresh:3; url=../view/pages/login.php');
+                    $error = "Vous n'êtes pas encore inscrit !";
+                    require('../view/header.php');
+                    require('../view/navbar.php');
+                    require('../view/pages/login.php');
+                    require('../view/footer.php');
                 }
                 else{
                     header('Location: ../controller/account.php');
