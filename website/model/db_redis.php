@@ -39,9 +39,9 @@
         function SuppressionPanier($idProduit, $typeBoite){
             $idTabProduits = "tabProduits_".getId();
             $idPanier = "panier:".getId().":".$idProduit;
-            $this->co->hIncrBy($idPanier, $TypeBoite, -1);
-            if ($this->co->hGet($idPanier, $TypeBoite) <= 0){
-                $this->co->hDel($idPanier, $TypeBoite);
+            $this->co->hIncrBy($idPanier, $typeBoite, -1);
+            if ($this->co->hGet($idPanier, $typeBoite) <= 0){
+                $this->co->hDel($idPanier, $typeBoite);
                 if ($this->co->hLen($idPanier) <= 0){
                     $this->co->sRem($idTabProduits, $idProduit);
                 }
