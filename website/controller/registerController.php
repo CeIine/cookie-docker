@@ -7,14 +7,25 @@
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $mail = $_POST['mail'];
-        $password = $_POST['password'];
+        $password = hash('sha256', $_POST['password']);
         $login = $_POST['login'];
 
         $pg = new Postgres();
         $co = $pg->connecter();
        
         $client = new Client($co, $nom, $prenom, $login, $password, $mail);
-        $client->inscription();
+        if($client->loginExists())
+        {
+            $error = "Login déjà pris !";
+            require('../view/header.php');
+            require('../view/navbar.php');
+            require('../view/pages/register.php');
+            require('../view/footer.php');
+        }
+        else
+        {
+            $client->inscription();
+        }
 	}
 	else{
 		echo "Remplissez vos coordonnées svp!";

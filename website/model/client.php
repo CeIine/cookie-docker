@@ -23,8 +23,8 @@ use LDAP\Result;
                     $this->nom = $args[1];
                     $this->prenom = $args[2];
                     $this->login = $args[3];
-                    $this->mail = $args[4];
-                    $this->mdp = $args[5];
+                    $this->mdp = $args[4];
+                    $this->mail = $args[5];
                     break;
                 case 3:
                     $this->co = $args[0];
@@ -52,11 +52,32 @@ use LDAP\Result;
             }
 		}
 
+        public function loginExists()
+        {
+            $requete = "SELECT COUNT(*) FROM client WHERE login = '$this->login'";
+            try
+            {
+                $result = $this->co->query($requete);
+                if($result === false)
+                {
+                    $e = new PDOException('Failed to query the database');
+                    throw $e;
+                }
+                return $result->fetch()[0] != 0;
+            }
+            catch(PDOException $e){
+                $error = "Database Error: ";
+                $error .= $e->getMessage();
+                include('../view/error.php');
+            }
+        }
+
 		public function connexion(){
 			$requete="SELECT * FROM client WHERE login='$this->login' AND password='$this->mdp'";
 			
             try{
                 $result = $this->co->query($requete)->fetchColumn();
+                unset($error);
 
                 if($result == 0){
                     $error = "Vous n'êtes pas encore inscrit !";

@@ -11,6 +11,7 @@
             <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Login" required></div>
             <div class="form-group"><input class="form-control" type="email" name="mail" placeholder="Mail" required></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required></div>
+            <?php if(isset($error)){ echo '<p style="color: red">'.$error.'</p>'; } ?>
             <div class="form-group text-center"><button class="btn btn-primary btn-block" type="submit">Créer mon compte</button></div><br>
         </form>
     </div>
