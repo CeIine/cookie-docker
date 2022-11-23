@@ -10,14 +10,14 @@
 </div>
 
 <!-- Classiques -->
-<div class="container section-accueil">
+<div class="container mb-5">
     <h1 class="text-light fs-1 text-center mb-5">Nos classiques</h1>
     <div class="container-fluid row">
         <?php
             foreach ($classic as $c) {
         ?>
         <div class="col-lg-4 mb-3 d-flex align-items-stretch text-center">
-            <div class="card " data-aos="slide-up" data-aos-duration="<?php  echo 3000+(int)$c['idProduit']*100 ?>">
+            <div class="card " data-aos="slide-up" >
                 <img src="../../view/img/produits/<?php echo $c['image'] ?>" class="card-img-top" alt="cookie">
                 <div class="card-body d-flex flex-column justify-content-end">
                     <h5 class="card-title"><?php echo $c['nom'] ?></h5>
@@ -60,7 +60,7 @@
 </div>
 
 <!-- Best Seller -->
-<div class="container-fluid text-center text-light">
+<div class="container-fluid text-center text-light mt-5">
     <div class="row vh-100 d-flex align-items-center justify-content-center">
         <div class="col bg-img">
         </div>
@@ -99,14 +99,14 @@
 </div>
 
 <!-- Produits -->
-<div class="container section-accueil">
+<div class="container">
     <h1 class="text-light fs-1 text-center my-5">Nos Cookies</h1>
     <div class="container-fluid row">
         <?php
             foreach ($products as $p) {
         ?>
         <div class="col-lg-4 mb-3 d-flex align-items-stretch text-center">
-            <div class="card">
+            <div class="card" data-aos="flip-up">
                 <img src="../../view/img/produits/<?php echo $p['image'] ?>" class="card-img-top" alt="cookie">
                 <div class="card-body d-flex flex-column justify-content-end">
                     <h5 class="card-title"><?php echo $p['nom'] ?></h5>
@@ -147,3 +147,6 @@
         ?>
     </div>
 </div>
+<footer class="text-center text-light py-3 fs-5">
+    Created by Céline, Dylan and Dim 🍪
+</footer>

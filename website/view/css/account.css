@@ -1,0 +1,20 @@
+/* lined tabs */
+
+.lined .nav-link {
+    color: #555 !important;
+    border: none !important;
+    border-bottom: 3px solid transparent !important;
+}
+
+.lined .nav-link:hover {
+    border: none !important;
+    border-bottom: 3px solid transparent !important;
+}
+
+.lined .nav-link.active {
+    background: none !important;
+    color: black !important;
+    font-weight: bold;
+    border-color: teal !important;
+}
+  

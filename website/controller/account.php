@@ -1,12 +1,14 @@
 <?php
-    $connecter = false; 
+    require('../view/header.php');
+    require('../view/navbar.php');
+
+    $connecter = true; 
     if($connecter){
-        echo "envoyer sur page info client";
+        require('../view/pages/account.php');
     }
     else{
-        require('../view/header.php');
-        require('../view/navbar.php');
         require('../view/pages/login.php');
-        require('../view/footer.php');
     }
+
+    require('../view/footer.php');
 ?>
