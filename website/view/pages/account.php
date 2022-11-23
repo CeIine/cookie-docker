@@ -12,7 +12,6 @@
         <div id="myTab2Content" class="tab-content">
             <div id="home2" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
                 <div class="form-container">
-                <div class="image-holder"></div>
                     <form method="post">
                         <span>
                             Nom
@@ -36,6 +35,12 @@
                         <div class="form-group"><input class="form-control" type="password" name="password" value="<?php echo $infoCli['password'] ?>"></div>
                     </form>
                 </div>
+                <form method="post" action="../../controller/deconnexionController.php">
+                    <div class="text-center">
+                        <input class="form-control" type="hidden" name="id" value="<?php echo $infoCli['idClient'] ?>">
+                        <div class="form-group text-center"><button class="btn btn-danger" type="submit">Déconnexion</button></div>
+                    </div>
+                </form>
             </div>
             <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
                 <p class="leade font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute

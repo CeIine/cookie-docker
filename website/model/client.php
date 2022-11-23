@@ -5,6 +5,7 @@ use LDAP\Result;
 
     class Client{
         private $co;
+        private $id;
         private $nom;
         private $prenom;
         private $mail;
@@ -30,6 +31,10 @@ use LDAP\Result;
                     $this->co = $args[0];
                     $this->login = $args[1];
                     $this->mdp = $args[2];
+                    break;
+                case 2:
+                    $this->co = $args[0];
+                    $this->id = $args[1];
                     break;
 			}
 		}
@@ -92,5 +97,14 @@ use LDAP\Result;
                 include('../view/error.php');
             }
 		}
+
+        public function deconnexion()
+        {
+            $redis = new RedisDb();
+
+            $redis->connecter();
+
+            $redis->disconnect();
+        }
 	}
 ?>
