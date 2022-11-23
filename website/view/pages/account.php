@@ -17,23 +17,23 @@
                         <span>
                             Nom
                         </span>
-                        <div class="form-group"><input class="form-control" type="nom" name="nom" ></div>
+                        <div class="form-group"><input class="form-control" type="nom" name="nom" value="<?php echo $infoCli['nom'] ?>" ></div>
                         <span>
                             Prénom
                         </span>
-                        <div class="form-group"><input class="form-control" type="prenom" name="prenom"></div>
+                        <div class="form-group"><input class="form-control" type="prenom" name="prenom" value="<?php echo $infoCli['prenom'] ?>"></div>
                         <span>
                             Login
                         </span>
-                        <div class="form-group"><input class="form-control" type="login" name="login" ></div>
+                        <div class="form-group"><input class="form-control" type="login" name="login" value="<?php echo $infoCli['login'] ?>" ></div>
                         <span>
                             Mail
                         </span>
-                        <div class="form-group"><input class="form-control" type="mail" name="mail"></div>
+                        <div class="form-group"><input class="form-control" type="mail" name="mail" value="<?php echo $infoCli['mail'] ?>"></div>
                         <span>
                             Password
                         </span>
-                        <div class="form-group"><input class="form-control" type="password" name="password"></div>
+                        <div class="form-group"><input class="form-control" type="password" name="password" value="<?php echo $infoCli['password'] ?>"></div>
                     </form>
                 </div>
             </div>

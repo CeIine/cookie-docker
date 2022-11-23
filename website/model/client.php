@@ -66,6 +66,9 @@ use LDAP\Result;
                     require('../view/footer.php');
                 }
                 else{
+                    $redis = new RedisDb();
+                    $redis->connecter();
+                    $redis->setId($result);
                     header('Location: ../controller/account.php');
                 }
             }
@@ -74,8 +77,20 @@ use LDAP\Result;
                 $error .= $e->getMessage();
                 include('../view/error.php');
             }
+		}
 
-
+        public function getInfo($id){
+			$requete="SELECT * FROM client WHERE \"idClient\"=$id";
+			
+            try{
+                $result = $this->co->query($requete)->fetch();
+                return $result;
+            }
+            catch(PDOException $e){
+                $error = "Database Error: ";
+                $error .= $e->getMessage();
+                include('../view/error.php');
+            }
 		}
 	}
 ?>
