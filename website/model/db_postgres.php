@@ -1,14 +1,22 @@
 <?php
-    $dns = "pgsql:host=postgres;port=5432;dbname=postgre";
-    $user = "admin";
-    $password = "admin";
+    class Postgres{
+        private $dns = "pgsql:host=postgres;port=5432;dbname=postgres";
+        private $user = "admin";
+        private $password = "admin";
+        private $co;
 
-    try{
-        $db = new PDO($dns, $user, $password);
+        function connecter(){
+            try{
+                $this->co = new PDO($this->dns, $this->user, $this->password);
+                return $this->co;
+            }
+            catch(PDOException $e){
+                $error = "Database Error: ";
+                $error .= $e->getMessage();
+                include('../view/error.php');
+            }
+        }
+
     }
-    catch(PDOException $e){
-        $error = "Database Error: ";
-        $error .= $e->getMessage();
-        include('view/error.php');
-    }
+
 ?>

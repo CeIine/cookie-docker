@@ -1,6 +1,6 @@
 <?php
-    // require_once('../modeles/client.php');
-    // require_once('../modeles/bd.php');
+    require_once('../model/client.php');
+    require_once('../model/db_postgres.php');
 
 	if(!empty($_POST['nom'] && $_POST['prenom'] && $_POST['mail'] && $_POST['password'] && $_POST['login']))
 	{
@@ -10,11 +10,11 @@
         $password = $_POST['password'];
         $login = $_POST['login'];
 
-        // $connection = new connection();
-        // $co = $connection->connecter();
-
-        // $cli = new client($co,$nom,$prenom,$mail,$login);
-        // $cli->inscript();
+        $pg = new Postgres();
+        $co = $pg->connecter();
+       
+        $client = new Client($co, $nom, $prenom, $login, $password, $mail);
+        $client->inscription();
 	}
 	else{
 		echo "Remplissez vos coordonnées svp!";

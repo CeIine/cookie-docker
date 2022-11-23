@@ -9,3 +9,31 @@
 .navbar{
     height: 100px;
 }
+
+.bg-img{
+  /* The image used */
+  background-image: url("../img/produits/morelliie.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card{
+    background-color: #E5B273 !important;
+}
+
+.btn-primary{
+    background: teal !important;
+    border-color: teal !important;
+}
+
+.btn-primary:hover{
+    background: rgb(1, 97, 97) !important;
+    border: none;
+}
