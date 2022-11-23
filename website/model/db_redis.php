@@ -3,20 +3,15 @@
         private $redis;
 
         function connecter(){
-            /* Connection Ã  la BDD */
             $redis = new Redis();
             $this->redis->connect('localhost', 6379);
-            //echo "Connection successfull !";
-            //echo "\nServer is running: ".$redis->ping();
         }
 
         function setId($idClient){
-            /* Sauvegarde de l'ID du client quand il se connecte */
             if ($this->redis->ttl('idClient') <= 0){
                 $this->redis->set('idClient', $idClient);
             }
             $this->redis->expire($idClient, 1200);
-            //echo $redis->ttl($idClient);
         }
 
         function getId(){
@@ -46,18 +41,14 @@
             }
         }
 
-        //pas fini
         function getPanierComplet(){
+            $myPanier = array();
             foreach($redis->sMembers($idTabProduits) as $id){
-                $idPanier = "panier:".getId().":".$id;
-                echo "Produit ".$id." : <br>";   
-                foreach ($redis->hGetAll($idPanier) as $key => $value) {
-                    echo "\nBoite de $key = $value";
-                    print_r($arr);
-                }  
+                $idPanier = "panier:".$redis->get('idClient').":".$id;  
+                $myPanier[$id] = $redis->hGetAll($idPanier);   
             }
+            return $myPanier;
         }
-
     }
 
 ?>
