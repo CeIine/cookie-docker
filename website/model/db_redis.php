@@ -27,11 +27,8 @@
             return $this->co->get('idClient');
         }
 
-        function disconnect(){
-
-        }
-
         function AjoutPanier($idProduit, $typeBoite, $nbBoite){
+            $idTabProduits = "tabProduits_".getId();
             $this->co->sAdd($idTabProduits, $idProduit);
             $idPanier = "panier:".getId().":".$idProduit;
             $this->co->hSet($idPanier, $typeBoite, $nbBoite);
@@ -40,6 +37,7 @@
         }
 
         function SuppressionPanier($idProduit, $typeBoite){
+            $idTabProduits = "tabProduits_".getId();
             $idPanier = "panier:".getId().":".$idProduit;
             $this->co->hIncrBy($idPanier, $TypeBoite, -1);
             if ($this->co->hGet($idPanier, $TypeBoite) <= 0){
@@ -51,12 +49,23 @@
         }
 
         function getPanierComplet(){
+            $idTabProduits = "tabProduits_".getId();
             $myPanier = array();
             foreach($this->co->sMembers($idTabProduits) as $id){
-                $idPanier = "panier:".$this->co->get('idClient').":".$id;  
+                $idPanier = "panier:".getId().":".$id;  
                 $myPanier[$id] = $this->co->hGetAll($idPanier);   
             }
             return $myPanier;
+        }
+
+        function disconnect(){
+            $idTabProduits = "tabProduits_".getId();
+            foreach($this->co->sMembers($idTabProduits) as $id){
+                $idPanier = "panier:".getId().":".$id;  
+                $this->co->del($idPanier);   
+            }
+            $this->co->del($idTabProduits);
+            $this->co->del('idClient');
         }
 
     }
