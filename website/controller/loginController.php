@@ -14,6 +14,6 @@
         $client->connexion();
     }
     else{
-        header('Location: account.php');
+        header('Location: ./account.php');
     }
 ?>

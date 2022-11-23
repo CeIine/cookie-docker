@@ -1,6 +1,7 @@
 <?php
 
 use LDAP\Result;
+    require_once('../model/db_redis.php');
 
     class Client{
         private $co;
