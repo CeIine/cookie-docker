@@ -4,7 +4,7 @@
 
     if(!empty($_POST['password'] && $_POST['login']))
     {
-        $password = $_POST['password'];
+        $password = hash('sha256', $_POST['password']);
         $login = $_POST['login'];
 
         $pg = new Postgres();
