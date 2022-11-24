@@ -127,5 +127,36 @@ use LDAP\Result;
 
             $redis->disconnect();
         }
+
+        public function calculPrix($myPanier){
+
+            $prixTotal = 0;
+            foreach ($myPanier as $produit => $value) {
+                $result = pg_query($this->co, "SELECT prix FROM produit WHERE idProduit = $idProduit");
+                $row = pg_fetch_row($result);
+                $prix_produit = $row[0];
+
+                foreach ($value as $qteBoite => $nbBoite) {
+                    $prixTotal = $prixTotal + ($qteBoite * $nbBoite * $prix_produit);
+                }
+            }
+            return $prixTotal;
+        }
+
+        public function commander($myPanier){
+
+            $montant = calculPrix($myPanier);
+            $result = pg_query($this->co, "INSERT INTO commande (date, statut, montant, idClient) VALUES (date(), 'en cours de préparation', $montant, $idClient)");
+            $result = pg_query($this->co, "SELECT idCommande FROM commande ORDER BY idCommande DESC");
+            $row = pg_fetch_row($result);
+            $idCommande = $row[O];
+            
+            foreach ($myPanier as $produit => $value) {
+                foreach ($value as $qteBoite => $nbBoite) {
+                    $result = pg_query($this->co, "INSERT INTO commandeproduit (idCommande, idProduit, quantite, nbBoite) VALUES ($idCommande, $produit, $qteBoite, $nbBoite)");
+                }
+            }
+        }
+
 	}
 ?>
