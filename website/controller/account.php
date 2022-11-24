@@ -4,8 +4,8 @@
     require_once('../model/client.php');
     require_once('../model/commands.php');
 
-    //require('../view/header.php');
-    //require('../view/navbar.php');
+    require('../view/header.php');
+    require('../view/navbar.php');
 
     $redis = new RedisDb();
     $redis->connecter();
@@ -14,13 +14,12 @@
     if($id != null){
         $pg = new Postgres();
         $co = $pg->connecter();
-        echo "testaa";
 
         $client = new Client($co, $login, $password);
         $infoCli = $client->getInfo($id);
 
-        $commands = new Commands($co, $id);
-        $commandes = $commands->getCommandes($id);
+        $commands = new Commands($id);
+        $commandes = $commands->getData();
 
         require('../view/pages/account.php');
     }
@@ -28,5 +27,5 @@
         require('../view/pages/login.php');
     }
 
-    //require('../view/footer.php');
+    require('../view/footer.php');
 ?>

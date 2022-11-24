@@ -9,7 +9,6 @@ class Commands
     private int $clientID;
     private array $data;
     private array $dataToInsert = [];
-    private $co;
 
     public function __construct(){
 
@@ -44,7 +43,7 @@ class Commands
 
     private function getDataSQL()
     {
-        $requete = "SELECT * FROM commande WHERE idClient = '$this->clientID'";
+        $requete = "SELECT * FROM commande WHERE \"idClient\" = $this->clientID";
 
         try
         {
@@ -54,6 +53,7 @@ class Commands
                 $e = new PDOException('Failed to query the database');
                 throw $e;
             }
+
             $this->data = $result->fetchAll();
         }
         catch(PDOException $e){
@@ -62,7 +62,7 @@ class Commands
             include('../view/error.php');
         }
 
-        $this->getDetailedDataSQL();
+        //$this->getDetailedDataSQL();
     }
 
     private function getDetailedDataSQL()
@@ -121,51 +121,33 @@ class Commands
     {
         return $this->data;
     }
-
+    
     public function commander($myPanier, $montant, $co, $idClient){
 
-        $result = pg_query($co, "INSERT INTO commande (date, statut, montant, idClient) VALUES (date(), 'en cours de préparation', $montant, $idClient)");
-        $result = pg_query($co, "SELECT idCommande FROM commande ORDER BY idCommande DESC");
-        $row = pg_fetch_row($result);
-        $idCommande = $row[0];
-        
-        foreach ($myPanier as $produit => $value) {
-            foreach ($value as $qteBoite => $nbBoite) {
-                $result = pg_query($co, "INSERT INTO commandeproduit (idCommande, idProduit, quantite, nbBoite) VALUES ($idCommande, $produit, $qteBoite, $nbBoite)");
-            }
-        }
-    }
+        $requete="INSERT INTO commande (date, statut, montant, \"idClient\") VALUES (date(), 'en cours de préparation', $montant, $idClient)";
 
-    public function getCommandes($id)
-    {
-        $requete="SELECT * FROM commande WHERE \"idClient\"=$id";
-
-        try{
+        try
+        {
             $result = $this->co->query($requete);
-
             if($result === false){
                 throw new PDOException;
             }
-
-            $commandes = [];
-            while (($row = $result->fetch())) {
-                $commande = [
-                    'idCommande' => $row['idCommande'],
-                    'date' => $row['date'],
-                    'description' => $row['statut'],
-                    'statut' => $row['prix'],
-                    'montant' => $row['montant']
-                ];
-                $commandes[] = $commande;
-            }
-
-            return $commandes;
+            header('Location: ../controller/account.php');
         }
         catch(PDOException $e){
             $error = "Database Error: ";
             $error .= $e->getMessage();
             include('../view/error.php');
         }
+        // $result = pg_query($co, "SELECT idCommande FROM commande ORDER BY idCommande DESC");
+        // $row = pg_fetch_row($result);
+        // $idCommande = $row[0];
+        
+        // foreach ($myPanier as $produit => $value) {
+        //     foreach ($value as $qteBoite => $nbBoite) {
+        //         $result = pg_query($co, "INSERT INTO commandeproduit (idCommande, idProduit, quantite, nbBoite) VALUES ($idCommande, $produit, $qteBoite, $nbBoite)");
+        //     }
+        // }
     }
 }
 

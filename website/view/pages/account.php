@@ -1,5 +1,5 @@
 <div class="register-photo container-fluid d-flex justify-content-center flex-column align-items-center p-5 rounded" style="padding-top: 100px ;">
-    <div class="p-5 bg-white rounded shadow">
+    <div class="p-5 bg-white rounded shadow ">
         <!-- Lined tabs-->
         <ul id="myTab2" role="tablist" class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
         <li class="nav-item flex-sm-fill">
@@ -42,31 +42,38 @@
                     </div>
                 </form>
             </div>
-            <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
+            <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" class="container-fluid tab-pane fade px-4 py-5">
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">N°</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Montant</th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        foreach ($commandes as $c) {
+                    ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                            <th><?php echo $c['idCommande']; ?></th>
+                            <td><?php echo $c['date']; ?></td>
+                            <td><?php echo $c['statut']; ?></td>
+                            <td><?php echo $c['montant']; ?></td>
                         </tr>
+                    <?php
+                        } 
+                    ?>
                     </tbody>
-                    </table>
+                </table>
             </div>
         </div>
         <!-- End lined tabs -->
   </div>
 
 </div>
+
 
 
 
