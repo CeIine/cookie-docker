@@ -13,7 +13,7 @@
                 </a>
             </li>
             <li class="nav-item px-4">
-                <a href="../../view/pages/panier.php">
+                <a href="../../controller/panier.php">
                     <img src="../../view/img/navbar/caddie.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
                 </a>
             </li>

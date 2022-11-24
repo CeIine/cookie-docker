@@ -28,6 +28,15 @@
     background-color: #E5B273 !important;
 }
 
+.card-cmd{
+    background-color: white !important;
+    border: none;
+}
+
+.card-body-panier{
+    background-color: white !important;
+}
+
 .btn-primary{
     background: teal !important;
     border-color: teal !important;
@@ -36,4 +45,28 @@
 .btn-primary:hover{
     background: rgb(1, 97, 97) !important;
     border: none;
+}
+
+.btn-primary-cmd{
+    background: #E5B273 !important;
+}
+
+.btn-primary-cmd:hover{
+    background: #9c794e !important;
+}
+
+.bg-teal{
+    background-color: teal!important;
+}
+
+.link-custom{
+    color: black;
+}
+
+.link-custom:hover{
+    color: #9c794e;
+}
+
+.link-trash:hover{
+    color: red;
 }

@@ -31,7 +31,7 @@
             $idTabProduits = "tabProduits_".$this->getId();
             $this->co->sAdd($idTabProduits, $idProduit);
             $idPanier = "panier:".$this->getId().":".$idProduit;
-            $this->co->hSet($idPanier, $typeBoite, $nbBoite);
+            $this->co->hIncrBy($idPanier, $typeBoite, $nbBoite);
             $this->co->expire($idPanier, 300);
             $this->co->expire($idTabProduits, 300);
         }

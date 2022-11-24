@@ -9,7 +9,7 @@
     $redis = new RedisDb();
     $redis->connecter();
     $id = $redis->getId();
-    echo $id;
+    
     if($id != null){
         $pg = new Postgres();
         $co = $pg->connecter();

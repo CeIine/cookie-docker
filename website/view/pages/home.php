@@ -10,7 +10,7 @@
 </div>
 
 <!-- Classiques -->
-<div class="container mb-5">
+<div class="container mb-5" id="1">
     <h1 class="text-light fs-1 text-center mb-5">Nos classiques</h1>
     <div class="container-fluid row">
         <?php
@@ -26,14 +26,15 @@
 
                     <hr/>
                     
-                    <form method="post" action="../../controller/loginController.php">
+                    <form method="post" action="../../controller/addProduct.php">
                         <div class="row align-items-center justify-content-center">
-                            <input type="hidden" value="<?php echo $c['idProduit'] ?>">
+                            <input type="hidden" name="idSection" value="1">
+                            <input type="hidden" name="id" value="<?php echo $c['idProduit'] ?>">
                             <div class="col-auto">
                                 <span class="fs-5 align-text-bottom">Boîte de </span>
                             </div>
                             <div class="col-auto">
-                                <select class="form-select">
+                                <select class="form-select" name="type">
                                     <option selected value="4">4 cookies</option>
                                     <option value="8">8 cookies</option>
                                     <option value="16">16 cookies</option>
@@ -60,7 +61,7 @@
 </div>
 
 <!-- Best Seller -->
-<div class="container-fluid text-center text-light mt-5">
+<div class="container-fluid text-center text-light mt-5" id="2">
     <div class="row vh-100 d-flex align-items-center justify-content-center">
         <div class="col bg-img">
         </div>
@@ -71,14 +72,15 @@
             </p>
             <p class="card-text fs-3"><em>4 cookies: <?php echo $bs['prix']; ?>€</em></p>
 
-            <form method="post" action="../../controller/loginController.php">
+            <form method="post" action="../../controller/addProduct.php">
                 <div class="row mt-5 align-items-center justify-content-center">
-                    <input type="hidden" value="<?php echo $bs['idProduit'] ?>">
+                    <input type="hidden" name="idSection" value="2">
+                    <input type="hidden" name="id" value="<?php echo $bs['idProduit'] ?>">
                     <div class="col-auto">
                         <span class="fs-5 align-text-bottom">Boîte de </span>
                     </div>
                     <div class="col-auto">
-                        <select class="form-select">
+                        <select class="form-select" name="type">
                             <option selected value="4">4 cookies</option>
                             <option value="8">8 cookies</option>
                             <option value="16">16 cookies</option>
@@ -99,8 +101,8 @@
 </div>
 
 <!-- Produits -->
-<div class="container">
-    <h1 class="text-light fs-1 text-center my-5">Nos Cookies</h1>
+<div class="container" id="3">
+    <h1 class="text-light fs-1 text-center my-5" >Nos Cookies</h1>
     <div class="container-fluid row">
         <?php
             foreach ($products as $p) {
@@ -115,14 +117,15 @@
 
                     <hr/>
                     
-                    <form method="post" action="../../controller/loginController.php">
+                    <form method="post" action="../../controller/addProduct.php">
                         <div class="row align-items-center justify-content-center">
-                            <input type="hidden" value="<?php echo $p['idProduit'] ?>">
+                            <input type="hidden" name="idSection" value="3">
+                            <input type="hidden" name="id" value="<?php echo $p['idProduit'] ?>">
                             <div class="col-auto">
                                 <span class="fs-5 align-text-bottom">Boîte de </span>
                             </div>
                             <div class="col-auto">
-                                <select class="form-select">
+                                <select class="form-select" name="type">
                                     <option selected value="4">4 cookies</option>
                                     <option value="8">8 cookies</option>
                                     <option value="16">16 cookies</option>
