@@ -5,6 +5,7 @@ require_once('../model/db_postgres.php');
 
 class Commands
 {
+    private $co;
     private int $clientID;
     private array $data;
     private array $dataToInsert;
@@ -18,7 +19,6 @@ class Commands
         {
             case 1:
                 $this->clientID = $args[0];
-                $this->data = $this->getDataSQL();
                 $this->dataToInsert = [];
                 break;
             case 4:
@@ -31,9 +31,14 @@ class Commands
                 $this->insertDataSQL();
 
                 $this->clientID = $this->dataToInsert['idClient'];
-                $this->data = $this->getDataSQL();
+                
                 break;
         }
+
+        $pg = new Postgres();
+        $this->co = $pg->connecter();
+
+        $this->getDataSQL();
     }
 
     private function getDataSQL()
