@@ -1,6 +1,6 @@
 <?php
     class Postgres{
-        private $dns = "pgsql:host=postgres;port=5432;dbname=postgres";
+        private $dns = "pgsql:host=postgres;port=5432;dbname=admin";
         private $user = "admin";
         private $password = "admin";
         private $co;

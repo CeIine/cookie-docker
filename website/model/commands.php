@@ -124,7 +124,7 @@ class Commands
     
     public function commander($myPanier, $montant, $co, $idClient){
 
-        $requete="INSERT INTO commande (date, statut, montant, \"idClient\") VALUES (date(), 'en cours de préparation', $montant, $idClient)";
+        $requete="INSERT INTO commande (date, statut, montant, \"idClient\") VALUES (now(), 'en cours de préparation', $montant, $idClient)";
 
         try
         {
@@ -132,7 +132,6 @@ class Commands
             if($result === false){
                 throw new PDOException;
             }
-            header('Location: ../controller/account.php');
         }
         catch(PDOException $e){
             $error = "Database Error: ";

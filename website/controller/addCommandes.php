@@ -15,5 +15,5 @@
     $commands = new Commands($id);
     $commands->commander(null, $montant,$co, $id);
 
-    header('Location: ../index.php');
+    header('Location: ../controller/account.php');
 ?>
