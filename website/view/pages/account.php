@@ -1,5 +1,5 @@
 <div class="register-photo container-fluid d-flex justify-content-center flex-column align-items-center p-5 rounded" style="padding-top: 100px ;">
-    <div class="p-5 bg-white rounded shadow ">
+    <div class="p-5 bg-white rounded shadow">
         <!-- Lined tabs-->
         <ul id="myTab2" role="tablist" class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
         <li class="nav-item flex-sm-fill">
